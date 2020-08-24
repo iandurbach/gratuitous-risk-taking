@@ -67,6 +67,10 @@ p_h1
 h1data <- data %>% filter(dependents == "No dependents", charity == "For self", low_competence == "High competence", 
                           guide == "No guide", extreme_risk == "Baseline risk") 
 
+# effect size
+cohen.d(Q5_1~factor(extreme_sport), data = h1data)
+cohen.d(Q6_1~factor(extreme_sport), data = h1data)
+
 # aov on log-transformed response
 aov_h1d <- aov(log(Q5_1) ~ sport + vig_gender, data = h1data)
 # https://cran.r-project.org/web/packages/emmeans/vignettes/transformations.html
@@ -189,6 +193,9 @@ p_h4
 h4data <- data %>% filter(charity == "For self", low_competence == "High competence", 
                           guide == "No guide", extreme_risk == "Baseline risk") %>% filter(sport %in% c("skitouring"))
 
+# effect size
+cohen.d(Q6_1~factor(dependents), data = h4data)
+
 # aov on log-transformed response
 aov_h4d <- aov(log(Q5_1) ~ dependents, data = h4data)
 summary(aov_h4d)
@@ -223,6 +230,10 @@ p_h5
 # hold other variables fixed at baseline levels
 h5data <- data %>% filter(dependents == "No dependents", low_competence == "High competence", 
                           guide == "No guide", extreme_risk == "Baseline risk") %>% filter(sport %in% c("skitouring"))
+
+# effect size
+cohen.d(Q5_1~factor(charity), data = h5data)
+cohen.d(Q6_1~factor(charity), data = h5data)
 
 # aov on log-transformed response
 aov_h5d <- aov(log(Q5_1) ~ charity, data = h5data)
