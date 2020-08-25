@@ -1,12 +1,15 @@
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
 library(patchwork)
 library(emmeans)
 library(stringr)
 library(ks)
 library(DescTools)
 library(stargazer)
+library(effsize)
 
-data <- readRDS("output/sportrisk_cleaned.Rds")
+data <- readRDS("output/sportrisks_cleaned.Rds")
 
 ### Cleaning data
 
