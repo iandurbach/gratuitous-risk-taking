@@ -40,7 +40,7 @@ data_red <- data %>% rename(danger = Q5_1, conf_danger = Q5_a_1, recklessness = 
 
 ## In group
 
-x <- read_xlsx("data/sais_avalanche.xlsx", trim_ws = TRUE) %>% as.data.frame()
+x <- read_xlsx("data/sais-expskiers.xlsx", trim_ws = TRUE) %>% as.data.frame()
 
 # include only those who agreed
 x <- x %>% filter(!is.na(Q51)) %>% filter(str_detect(Q51, "Yes")) 
