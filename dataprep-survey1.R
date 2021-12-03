@@ -1,3 +1,8 @@
+# Data preprocessing to be run before analysis of Survey 1 responses in "Differences in expert and layperson’s danger and recklessness judgments 
+# about adventure sports participation" by Philip Ebert and Ian Durbach (2021).
+# Analysis code in "differences-analysis-survey1.R"
+# Last update 21.05.2020
+
 library(readxl)
 library(dplyr)
 
