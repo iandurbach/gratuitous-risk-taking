@@ -1,7 +1,5 @@
-# Data preprocessing to be run before analysis of Survey 2 responses in "Differences in expert and layperson’s danger and recklessness judgments 
-# about adventure sports participation" by Philip Ebert and Ian Durbach (2021).
-# Analysis code in "differences-analysis-survey2.R"
-# Last update 03.12.2021
+# Data preprocessing to be run before analysis of Survey 2 responses in "Expert and lay judgments of danger and recklessness 
+# in adventure sports", Ebert and Durbach, J of Risk Research (2022).
 
 library(dplyr)
 library(ggplot2)
@@ -56,7 +54,8 @@ xl <- data.frame(ski_touring = rep(x$Q2_1, 4),
                  insurance_yn = c(x$Q108_baseline, x$Q177_extreme, x$Q188_charity, x$Q210_lackcompetence),
                  insurance_amt = c(x$Q109_baseline, x$Q178_extreme, x$Q189_charity, x$Q211_lackcompetence), 
                  resp_gender = rep(x$Q27, 4),
-                 gender = "male")
+                 gender = "male",
+                 duration = rep(x$`Duration (in seconds)`, 4))
 
 # parse ratings
 xl <- xl %>% 
@@ -119,10 +118,10 @@ x4 <- data_red %>%
   dplyr::select(danger, conf_danger, recklessness, conf_reck, gender, resp_gender) %>%
   mutate(condition = "Low competence", ski_touring_primary = TRUE, sgroup = "outgroup")
 
-xl_out <- rbind(x1,x2,x3,x4) %>% filter(gender == "male")
+xl_out <- rbind(x1,x2,x3,x4) %>% filter(gender == "male") %>% mutate(duration = 1000)
 
 xl_in <- xl_in %>% mutate(sgroup = "ingroup") %>%
-  dplyr::select(danger, conf_danger, recklessness, conf_reck, condition, ski_touring_primary, gender, resp_gender, sgroup)
+  dplyr::select(danger, conf_danger, recklessness, conf_reck, condition, ski_touring_primary, gender, resp_gender, sgroup, duration)
 
 xl_all <- rbind(xl_in, xl_out) %>% 
   mutate(resp_gender = recode(resp_gender,
